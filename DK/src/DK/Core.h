@@ -8,6 +8,10 @@
 	#endif
 #else
 	#error DK only supports Windows!
+#endif 
+
+#ifdef DK_DEBUG
+	#define DK_ENABLE_ASSERTS
 #endif
 
 #ifdef DK_ENABLE_ASSERTS
