@@ -35,7 +35,6 @@ namespace DK {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-
 	class DK_API AppTickEvent : public Event
 	{
 	public:
@@ -62,9 +61,4 @@ namespace DK {
 		EVENT_CLASS_TYPE(AppRender)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
-
 }
-
-// WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-
-// AppTick, AppUpdate, AppRender,

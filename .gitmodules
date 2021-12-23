@@ -1,3 +1,9 @@
 [submodule "DK Engine/vendor/spdlog"]
 	path = DK Engine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "DK/vendor/GLFW"]
+	path = DK/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW
+[submodule "DK/vendor/GLF"]
+	path = DK/vendor/GLF
+	url = https://github.com/TheCherno/glfw

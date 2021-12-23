@@ -1,110 +1,137 @@
 workspace "DK"
-    architecture "x64"
-    startproject "Sandbox"
+	architecture "x64"
 
-    configurations
-    {
-        "Debug",
-        "Release",
-        "Dist"
-    }
+	configurations
+	{
+		"Debug",
+		"Release",
+		"Dist"
+	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "DK/vendor/GLFW/include"
+IncludeDir["Glad"] = "DK/vendor/Glad/include"
+IncludeDir["ImGui"] = "DK/vendor/imgui"
+
+include "DK/vendor/GLFW"
+include "DK/vendor/Glad"
+include "DK/vendor/imgui"
+
 project "DK"
-    location "DK"
-    kind "SharedLib"
-    language "C++"
+	location "DK"
+	kind "SharedLib"
+	language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    pchheader "dkpch.h"
-    pchsource "DK/src/dkpch.cpp"
+	pchheader "dkpch.h"
+	pchsource "DK/src/dkpch.cpp"
 
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
-    }
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
 
-    includedirs
-    {
-        "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
-    }
+	includedirs
+	{
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
+	}
 
-    filter "system:windows"
-        cppdialect "C++latest"
-        staticruntime "On"
-        systemversion "latest"
+	links 
+	{ 
+		"GLFW",
+		"Glad",
+		"ImGui",
+		"opengl32.lib"
+	}
 
-        defines
-        {
-            "DK_PLATFORM_WINDOWS",
-            "DK_BUILD_DLL"
-        }
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
 
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-        }
-    
-    filter "configurations:Debug"
-        defines "DK_DEBUG"
-        symbols "On"
+		defines
+		{
+			"DK_PLATFORM_WINDOWS",
+			"DK_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
+		}
 
-    filter "configurations:Release"
-        defines "DK_RELEASE"
-        optimize "On"
+		postbuildcommands
+		{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+		}
 
-    filter "configurations:Dist"
-        defines "DK_DIST"
-        optimize "On"
+	filter "configurations:Debug"
+		defines "DK_DEBUG"
+		buildoptions "/MDd"
+		symbols "On"
+
+	filter "configurations:Release"
+		defines "DK_RELEASE"
+		buildoptions "/MD"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "DK_DIST"
+		buildoptions "/MD"
+		optimize "On"
 
 project "Sandbox"
-    location "Sandbox"
-    kind "ConsoleApp"
-    language "C++"
+	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
-    }
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
 
-    includedirs
-    {
-        "DK/vendor/spdlog/include",
-        "DK/src"
-    }
+	includedirs
+	{
+		"DK/vendor/spdlog/include",
+		"DK/src"
+	}
 
-    links 
-    {
-        "DK"
-    }
+	links
+	{
+		"DK"
+	}
 
-    filter "system:windows"
-        cppdialect "C++latest"
-        staticruntime "On"
-        systemversion "latest"
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
 
-        defines
-        {
-            "DK_PLATFORM_WINDOWS"
-        }
+		defines
+		{
+			"DK_PLATFORM_WINDOWS"
+		}
 
-    filter "configurations:Debug"
-        defines "DK_DEBUG"
-        symbols "On"
+	filter "configurations:Debug"
+		defines "DK_DEBUG"
+		buildoptions "/MDd"
+		symbols "On"
 
-    filter "configurations:Release"
-        defines "DK_RELEASE"
-        optimize "On"
+	filter "configurations:Release"
+		defines "DK_RELEASE"
+		buildoptions "/MD"
+		optimize "On"
 
-    filter "configurations:Dist"
-        defines "DK_DIST"
-        optimize "On"
+	filter "configurations:Dist"
+		defines "DK_DIST"
+		buildoptions "/MD"
+		optimize "On"

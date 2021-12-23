@@ -2,8 +2,8 @@
 
 #include "Event.h"
 
-namespace DK 
-{
+namespace DK {
+
 	class DK_API MouseMovedEvent : public Event
 	{
 	public:
@@ -16,12 +16,12 @@ namespace DK
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent " << m_MouseX << ", " << m_MouseY;
+			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
 			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(MouseMoved)
-		EVENT_CLASS_CATEGORY(EventCategory | EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
 		float m_MouseX, m_MouseY;
 	};
@@ -50,10 +50,10 @@ namespace DK
 
 	class DK_API MouseButtonEvent : public Event
 	{
+	public:
 		inline int GetMouseButton() const { return m_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-
 	protected:
 		MouseButtonEvent(int button)
 			: m_Button(button) {}
@@ -77,19 +77,20 @@ namespace DK
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class DK_API MouseButtonReleaseEvent : public MouseButtonEvent
+	class DK_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleaseEvent(int button)
+		MouseButtonReleasedEvent(int button)
 			: MouseButtonEvent(button) {}
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent :" << m_Button;
+			ss << "MouseButtonReleasedEvent: " << m_Button;
 			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
+
 }

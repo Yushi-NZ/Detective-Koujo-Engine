@@ -5,7 +5,19 @@
       <UniqueIdentifier>{54735900-40FF-870B-A9AD-880B9558880B}</UniqueIdentifier>
     </Filter>
     <Filter Include="DK\Events">
-      <UniqueIdentifier>{807e460d-8306-4fa6-bac2-8125ca4693e0}</UniqueIdentifier>
+      <UniqueIdentifier>{B898E9E5-2403-9E5C-6D41-4F02D9EA7BB1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DK\ImGui">
+      <UniqueIdentifier>{7E17883D-6AE4-E248-93FD-D0F07F2918D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -17,9 +29,6 @@
       <Filter>DK</Filter>
     </ClInclude>
     <ClInclude Include="src\DK\EntryPoint.h">
-      <Filter>DK</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DK\Log.h">
       <Filter>DK</Filter>
     </ClInclude>
     <ClInclude Include="src\DK\Events\ApplicationEvent.h">
@@ -34,16 +43,51 @@
     <ClInclude Include="src\DK\Events\MouseEvent.h">
       <Filter>DK\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\DK\ImGui\ImGuiLayer.h">
+      <Filter>DK\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DK\Layer.h">
+      <Filter>DK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DK\LayerStack.h">
+      <Filter>DK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DK\Log.h">
+      <Filter>DK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DK\Window.h">
+      <Filter>DK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dkpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DK\Application.cpp">
       <Filter>DK</Filter>
     </ClCompile>
+    <ClCompile Include="src\DK\ImGui\ImGuiLayer.cpp">
+      <Filter>DK\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DK\Layer.cpp">
+      <Filter>DK</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DK\LayerStack.cpp">
+      <Filter>DK</Filter>
+    </ClCompile>
     <ClCompile Include="src\DK\Log.cpp">
       <Filter>DK</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dkpch.cpp" />
   </ItemGroup>
 </Project>
