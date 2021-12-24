@@ -10,12 +10,17 @@ public:
 
 	void OnUpdate() override
 	{
-		DK_INFO("ExampleLayer::Update");
+		//DK_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(DK::Event& event) override
 	{
-		DK_TRACE("{0}", event);
+		if (event.GetEventType() == DK::EventType::KeyPressed)
+		{
+			DK::KeyPressedEvent& e = (DK::KeyPressedEvent&)event;
+
+			DK_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 
 };
