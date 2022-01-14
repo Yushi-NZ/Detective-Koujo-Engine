@@ -25,21 +25,22 @@ namespace DK {
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		double xPos, yPos;
-		glfwGetCursorPos(window, &xPos, &yPos);
+		double xpos, ypos;
+		glfwGetCursorPos(window, &xpos, &ypos);
 
-		return { (float)xPos, (float)yPos };
+		return { (float)xpos, (float)ypos };
 	}
 
 	float WindowsInput::GetMouseXImpl()
 	{
-		auto [x, y] = GetMousePositionImpl();
+		auto[x, y] = GetMousePositionImpl();
 		return x;
 	}
 
 	float WindowsInput::GetMouseYImpl()
 	{
-		auto [x, y] = GetMousePositionImpl();
+		auto[x, y] = GetMousePositionImpl();
 		return y;
 	}
+
 }

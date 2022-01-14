@@ -1,10 +1,11 @@
 #pragma once
 
 #include "DK/Core.h"
+#include "DK/Core/Timestep.h"
 #include "DK/Events/Event.h"
 
-namespace DK
-{
+namespace DK {
+
 	class DK_API Layer
 	{
 	public:
@@ -13,12 +14,13 @@ namespace DK
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
+		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
-		
-		inline const std::string& GetName() const { return m_DebugName; }
 
+		inline const std::string& GetName() const { return m_DebugName; }
 	protected:
 		std::string m_DebugName;
 	};
+
 }
