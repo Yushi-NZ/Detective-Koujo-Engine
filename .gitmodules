@@ -7,3 +7,6 @@
 [submodule "DK/vendor/GLF"]
 	path = DK/vendor/GLF
 	url = https://github.com/TheCherno/glfw
+[submodule "DK/vendor/glm"]
+	path = DK/vendor/glm
+	url = https://github.com/g-truc/glm
